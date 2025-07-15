@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Appointments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='appointments.css') }}">
+</head>
+<body>
+    <div class="appointments-container">
+        <!-- Header -->
+        <div class="appointments-header">
+            <h1>Patient Appointments</h1>
+            <div class="header-actions">
+                <span class="appointment-count">Total: {{ total_count }} appointments</span>
+                <a href="/" class="back-btn">Back to Chat</a>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-section">
+            <div class="filter-group">
+                <label for="status-filter">Status:</label>
+                <select id="status-filter" onchange="filterAppointments()">
+                    <option value="all">All Statuses</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="cancelled">Cancelled</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="date-filter">Date:</label>
+                <input type="date" id="date-filter" onchange="filterAppointments()">
+            </div>
+            
+            <div class="filter-group">
+                <label for="doctor-filter">Doctor:</label>
+                <input type="text" id="doctor-filter" placeholder="Search by doctor name" onchange="filterAppointments()">
+            </div>
+            
+            <button class="clear-filters-btn" onclick="clearFilters()">Clear Filters</button>
+        </div>
+
+        <!-- Error Message -->
+        {% if error %}
+        <div class="error-message">
+            <p>Error: {{ error }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Appointments Table -->
+        <div class="table-container">
+            <table class="appointments-table" id="appointments-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient Name</th>
+                        <th>Age</th>
+                        <th>Doctor</th>
+                        <th>Specialty</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Symptoms</th>
+                        <th>Booked On</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if appointments %}
+                        {% for appointment in appointments %}
+                        <tr class="appointment-row status-{{ appointment.status }}">
+                            <td>{{ appointment.appointment_id }}</td>
+                            <td class="patient-name">{{ appointment.patient_name }}</td>
+                            <td>{{ appointment.patient_age }}</td>
+                            <td class="doctor-name">{{ appointment.doctor_name }}</td>
+                            <td class="specialty">{{ appointment.specialty }}</td>
+                            <td class="appointment-date">{{ appointment.appointment_date }}</td>
+                            <td class="appointment-time">{{ appointment.slot_timing }}</td>
+                            <td>
+                                <span class="status-badge status-{{ appointment.status }}">
+                                    {{ appointment.status.title() }}
+                                </span>
+                            </td>
+                            <td class="symptoms">
+                                <div class="symptoms-text">
+                                    {{ appointment.symptoms or 'Not specified' }}
+                                </div>
+                            </td>
+                            <td class="booking-date">{{ appointment.booking_date }}</td>
+                            <td class="actions">
+                                <a href="/appointments/{{ appointment.appointment_id }}" class="view-btn">View</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="11" class="no-appointments">No appointments found</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Statistics -->
+        <div class="statistics">
+            <div class="stat-card">
+                <h3>Total Appointments</h3>
+                <p class="stat-number">{{ total_count }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Confirmed</h3>
+                <p class="stat-number">{{ appointments|selectattr('status', 'equalto', 'confirmed')|list|length }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Cancelled</h3>
+                <p class="stat-number">{{ appointments|selectattr('status', 'equalto', 'cancelled')|list|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='appointments.js') }}"></script>
+</body>
+</html>

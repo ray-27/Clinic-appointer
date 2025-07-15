@@ -1,0 +1,8 @@
+appointment_id,patient_name,patient_age,doctor_id,doctor_name,specialty,appointment_date,slot_timing,status,booking_date,symptoms
+1,raj,20,0,Dr. Evans,Cardiology,2025-07-16,13:00-13:30,confirmed,2025-07-16 00:35:45,
+2,rajveer,20,0,Dr. Foster,Cardiology,2025-07-18,09:00-09:30,confirmed,2025-07-16 00:42:01,
+3,rajveer,20,0,Dr. Allen,Orthopedics,2025-07-17,08:00-08:30,confirmed,2025-07-16 01:01:15,
+4,rajveer,20,0,Dr. Clark,Ophthalmology,2025-07-18,10:00-10:30,confirmed,2025-07-16 01:06:11,spices in the eyes
+5,Naman,22,0,Dr. Garcia,Cardiology,2025-07-17,17:00-17:30,confirmed,2025-07-16 01:11:41,Mild chest pain
+6,jv,22,65,Dr. Allen,Orthopedics,2025-07-17,08:00-08:30,confirmed,2025-07-16 01:22:49,leg pain
+7,nif,22,65,Dr. Allen,Orthopedics,2025-07-17,08:00-08:30,confirmed,2025-07-16 01:22:49,leg pain

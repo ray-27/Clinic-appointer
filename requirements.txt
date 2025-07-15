@@ -1,0 +1,7 @@
+Flask
+langchain
+langchain-ollama
+langchain-google-genai
+langgraph
+pandas
+python-dotenv
