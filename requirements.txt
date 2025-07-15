@@ -1,6 +1,7 @@
 Flask
 langchain
 langchain-ollama
+langchain-community
 langchain-google-genai
 langgraph
 pandas
