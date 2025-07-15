@@ -132,33 +132,6 @@ def filter_appointments():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# @app.route('/appointments/<int:appointment_id>')
-# def view_appointment_details(appointment_id):
-#     """View detailed information for a specific appointment."""
-#     try:
-#         # Get all appointments and find the specific one
-#         appointments = patient_db.get_all_appointments()
-#         appointment = None
-        
-#         for appt in appointments:
-#             if appt['appointment_id'] == appointment_id:
-#                 appointment = appt
-#                 break
-        
-#         if not appointment:
-#             return render_template('appointment_detail.html', 
-#                                  appointment=None, 
-#                                  error="Appointment not found")
-        
-#         return render_template('appointment_detail.html', 
-#                              appointment=appointment)
-    
-#     except Exception as e:
-#         return render_template('appointment_detail.html', 
-#                              appointment=None, 
-#                              error=str(e))
-
-
 
 
 if __name__ == '__main__':

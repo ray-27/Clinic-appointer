@@ -11,9 +11,9 @@ def load_llm():
 
     if service == "ollama":
         return ChatOllama(model=model)
-    elif service == "openai":
-        print("openai service is not made yet")
-        return None
+    # elif service == "openai":
+    #     print("openai service is not made yet")
+    #     return None
     elif service == "gemini":
         return ChatGoogleGenerativeAI(
             model=model,  # Use "gemini-2.0-flash"

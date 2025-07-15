@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "Installing Ollama..."
-curl -fsSL https://ollama.com/install.sh | sh
+# curl -fsSL https://ollama.com/install.sh | sh
+brew install ollama
 
 echo "Verifying installation..."
 ollama --version
